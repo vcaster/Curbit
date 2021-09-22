@@ -1,0 +1,2 @@
+# Curbit
+The “CurbIt” application is a lifestyle app designed to help users curtail, or curb, unhealthy behaviors. In its initial form, it is geared toward those wishing to cut down on smoking or vaping. CurbIt allows users to create a profile, set goals for cutting down on their bad habit, track their progress, and find motivation for positive change in their lives. CurbIt also provides a live chat service with a trained professional to help users looking for personal guidance, motivation, or just a human connection.
