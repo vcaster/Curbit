@@ -50,7 +50,7 @@ app.post('/api/users/register', (req, res) => {
     })
 });
 
-app.post('/api/users/login', auth, (req, res) => {
+app.post('/api/users/login', (req, res) => {
 
     User.findOne({'username':req.body.username},(err,user)=>{
         console.log(user)
