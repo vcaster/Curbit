@@ -1,0 +1,40 @@
+{
+  "name": "curbit",
+  "version": "1.0.0",
+  "description": "The “CurbIt” application is a lifestyle app designed to help users curtail, or curb, unhealthy behaviors. In its initial form, it is geared toward those wishing to cut down on smoking or vaping. CurbIt allows users to create a profile, set goals for cutting down on their bad habit, track their progress, and find motivation for positive change in their lives. CurbIt also provides a live chat service with a trained professional to help users looking for personal guidance, motivation, or just a human connection.",
+  "main": "server/server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server/server.js",
+    "server": "nodemon server/server.js",
+    "client": "npm run start --prefix client",
+    "dev": "concurrently \"npm run server\" \"npm run client\"",
+    "heroku-postbuild": "NPM_CONFIG_PRODUCTION=false npm install --prefix client && npm run build --prefix client"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/vcaster/Curbit.git"
+  },
+  "keywords": [
+    "curbit",
+    "lifestyle",
+    "tracker"
+  ],
+  "author": "",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/vcaster/Curbit/issues"
+  },
+  "homepage": "https://github.com/vcaster/Curbit#readme",
+  "dependencies": {
+    "bcrypt": "^5.0.1",
+    "body-parser": "^1.19.0",
+    "concurrently": "^6.3.0",
+    "cookie-parser": "^1.4.5",
+    "cors": "^2.8.5",
+    "dotenv": "^10.0.0",
+    "express": "^4.17.1",
+    "jsonwebtoken": "^8.5.1",
+    "mongoose": "^6.0.10"
+  }
+}
