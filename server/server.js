@@ -3,6 +3,7 @@ const moment = require('moment');
 const mongoose = require('mongoose');
 const bodyParser = require('body-parser');
 const cookieParser = require('cookie-parser');
+const cors = require('cors');
 
 require('dotenv').config();
 
@@ -11,6 +12,7 @@ mongoose.connect(process.env.MONGODB_URI)
 
 const app = express();
 
+app.use(cors({origin: 'http://localhost:3000',credentials: true}));
 app.use(bodyParser.urlencoded({extended:true}));
 app.use(bodyParser.json());
 app.use(cookieParser());
@@ -61,18 +63,18 @@ app.post('/api/users/register', (req, res) => {
 });
 
 app.post('/api/users/login', (req, res) => {
-
+    console.log(req.body.username)
     User.findOne({'username':req.body.username},(err,user)=>{
         console.log(user)
-        if(!user) return res.status(401).json({loginSuccess:false,message:'Wrong password'});
-        if(user.deleted === '1') return res.status(401).json({loginSuccess:false,message:'User Deleted'});
+        if(!user) return res.json({loginSuccess:false,message:'Wrong password'});
+        if(user.deleted === '1') return res.json({loginSuccess:false,message:'User Deleted'});
         
         // comparePassword in user module
         user.comparePassword(req.body.password,(err,isMatch)=>{
-            if(!isMatch) return res.status(401).json({loginSuccess:false,message:'Wrong password!'});
+            if(!isMatch) return res.json({loginSuccess:false,message:'Wrong password!'});
 
             user.generateToken((err,user)=>{
-                if(err) return res.status(400).send(err);
+                if(err) return res.send(err);
                 res.cookie('auth',user.token).status(200).json({
                     loginSuccess: true,
                     id: user._id
