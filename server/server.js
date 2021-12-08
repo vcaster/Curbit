@@ -6,7 +6,7 @@ const bodyParser = require('body-parser');
 const cookieParser = require('cookie-parser');
 const cors = require('cors');
 const { Server } = require("socket.io");
-
+const path = require('path');
 
 require('dotenv').config();
 
@@ -294,13 +294,6 @@ app.get('/api/graph/date_range', (req, res) => {
             return res.status(200).send(newdocs)
         })
 })
-
-if (process.env.NODE_ENV === 'production') {
-    app.get('/*', (req, res) => {
-        res.sendfile(path.resolve(__dirname, '../client', 'build', 'index.html'))
-    })
-}
-
 
 const port = process.env.PORT || 3001;
 server.listen(port, () => {
