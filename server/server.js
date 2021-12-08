@@ -16,7 +16,7 @@ mongoose.connect(process.env.MONGODB_URI)
 const app = express();
 const server = http.createServer(app);
 
-app.use(cors({ origin: 'http://localhost:3000', credentials: true }));
+app.use(cors({ origin: `${process.env.LINK || 'http://localhost:3000'}`, credentials: true }));
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 app.use(cookieParser());
@@ -24,7 +24,7 @@ app.use(express.static('client/build'))
 
 const io = new Server(server, {
     cors: {
-        origin: "http://localhost:3000",
+        origin: `${process.env.LINK || 'http://localhost:3000'}`,
         methods: ["GET", "POST"],
     },
 });
