@@ -76,6 +76,7 @@ app.get('/api/users/auth', auth, (req, res) => {
         endSmoke: req.user.endSmoke,
         streak: req.user.streak,
         dob: req.user.dob,
+        role: req.user.role,
         joinDate: req.user.joinDate,
         weight: req.user.weight,
         height: req.user.height
