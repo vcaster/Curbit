@@ -1,4 +1,5 @@
 const mongoose = require('mongoose');
+const moment = require('moment');
 const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
 const SALT_I = 10;
@@ -14,7 +15,6 @@ const userSchema = mongoose.Schema({
     password:{
         type:String,
         required: true,
-        unique: 1,
         minlength: 5
     },
     username:{
@@ -53,7 +53,7 @@ const userSchema = mongoose.Schema({
         required: true
     },
     streak:{
-        type:String,        
+        type:Number,        
         default:"0"
     },
     lastLogin:{
@@ -88,7 +88,7 @@ const userSchema = mongoose.Schema({
     token:{
         type:String
     }
-});
+},{timestamps:true});
 
 // Before saving to mongo
 userSchema.pre('save',function(next){
@@ -121,8 +121,10 @@ userSchema.methods.comparePassword = function(candidatePassword,cb){
 userSchema.methods.generateToken = function(cb){
     var user = this;
     var token = jwt.sign(user._id.toHexString(),process.env.SECRET)
+    
 
     user.token = token;
+    
     user.save(function(err,user){
         if(err) return cb(err);
         cb(null,user);
