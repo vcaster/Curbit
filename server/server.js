@@ -280,7 +280,18 @@ app.get('/api/graph/date_range', (req, res) => {
         find({ 'name': { $in: req.query._id }, 'createdAt': { $gte: startDate, $lt: endDate } }).
         populate('name').
         exec((err, docs) => {
-            return res.status(200).send(docs)
+            var newdocs=[]
+            // console.log(docs)
+            for (const [key, value] of Object.entries(docs)) {
+                newdocs.push({
+                    amount: docs[key].amount,
+                    createdAt: moment(docs[key].createdAt).format("YYYY-MM-DD")
+                }) 
+            }
+            // docs.forEach(element => {
+            //     console.log(element.updatedAt = moment(element.updatedAt).format("YYYY-MM-DD"))
+            // });
+            return res.status(200).send(newdocs)
         })
 })
 
