@@ -6,21 +6,23 @@ The “CurbIt” application is a lifestyle app designed to help users curtail, 
 ## Available Scripts
 
 ## First please perform
-###`npm install`
+### `npm install`
 
 _npm install will install all the required libraries saving you time instead of manually installing libraries_
 _if you are interested in learning about versions of packages refer to package.json file in the project directory_
 
-## Then to run the backend use
-### `npm start`
+## Before moving further you must copy .env to your project folder for configuring backend server
+.env
+```
+MONGODB_URI=mongodb+srv://CurbitUser:fHqJhNXxCCdtc8py@curbit.p066i.mongodb.net/CurbitDB?retryWrites=true&w=majority
+SECRET=VERYSECRET
 
-## OR for develeopment backedn use
-### `npm run server`
+```
+## Then to run the backend use
+### `npm run dev`
 
 Runs the app in the development mode.\
-Open [http://localhost:3001](http://localhost:3000) to view it in the browser.
+Open [http://localhost:3001](http://localhost:3001) to view it in the browser.
 
-### For simplicity we have disable linter
-You will also see any lint errors in the console.
 
 Happy Coding!
